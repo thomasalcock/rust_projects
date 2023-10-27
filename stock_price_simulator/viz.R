@@ -1,7 +1,7 @@
 library(ggplot2)
 df <- read.csv("outputs/output.csv", header=T)
 df$path_index <- as.character(df$path_index)
-head(df)
+dim(df)
 
 ggplot(df, aes(x = time_index, y = price, col = path_index)) + 
     geom_line() + theme_minimal() + 
