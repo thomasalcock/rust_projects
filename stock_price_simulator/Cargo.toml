@@ -11,3 +11,10 @@ rand_distr = "0.4.3"
 csv = "1.1"
 ndarray = "0.15.6"
 ndarray-rand = "0.14.0"
+clap = { version = "4.4.7", features = ["derive"] }
+
+[profile.dev]
+debug = true
+
+[profile.release]
+debug = true
