@@ -1,11 +1,11 @@
+use crate::simulation::SimulationInputs;
+
 use csv::Writer;
-use ndarray::{Array2, ArrayBase, Dim, OwnedRepr};
 use std::error::Error;
 
 pub fn write_simulation_results(
     file_path: &str,
-    data: Array2<f64>,
-    time_index: ArrayBase<OwnedRepr<f64>, Dim<[usize; 1]>>,
+    simulation_results: SimulationInputs,
     n_steps: usize,
     n_paths: usize,
 ) -> Result<(), Box<dyn Error>> {
@@ -17,8 +17,8 @@ pub fn write_simulation_results(
         for j in 0..n_paths {
             let _ = writer.write_record(&[
                 j.to_string(),
-                time_index[i].to_string(),
-                data[[i, j]].to_string(),
+                simulation_results.time_index[i].to_string(),
+                simulation_results.paths[[i, j]].to_string(),
             ]);
         }
     }
