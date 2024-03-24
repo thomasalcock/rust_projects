@@ -29,7 +29,6 @@ fn simulate_prob_of_same_birthday(n_simulations: i32, n_people: i32, generator: 
             n_duplicated_birthdays += 1;
         }         
     }
-
     let prob_same_birthday: f32 = n_duplicated_birthdays as f32 / n_simulations as f32;
     return prob_same_birthday;
 }
@@ -40,6 +39,6 @@ fn main() {
         let prob: f32 = simulate_prob_of_same_birthday(
             1000, n_people, &mut rng
         );
-        println!("{}", prob);
+        println!("{},{}", n_people, prob);
     } 
 }
