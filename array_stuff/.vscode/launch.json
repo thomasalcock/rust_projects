@@ -31,7 +31,8 @@
                     "test",
                     "--no-run",
                     "--bin=array_stuff",
-                    "--package=array_stuff"
+                    "--package=array_stuff",
+                    "--no-capture"
                 ],
                 "filter": {
                     "name": "array_stuff",

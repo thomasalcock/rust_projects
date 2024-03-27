@@ -1,3 +1,8 @@
+// TODO: test column insert function
+// TODO: add constant to feature matrix
+// TODO: finish estimation of weights
+// TODO: refactor and check which operations can be inplace
+
 use ::rand::Rng;
 use rand::rngs::ThreadRng;
 
@@ -59,6 +64,20 @@ impl Matrix {
         return result;
     }
 
+    fn insert_column(self, m: &Matrix) -> Matrix {
+        // assume that m has only one column
+        let mut result: Matrix = Matrix {
+            nrows: self.nrows,
+            ncols: self.ncols + 1,
+            data: vec![0.0; self.nrows * (self.ncols + 1)],
+        };
+        for i in 0..m.nrows {
+            result.data[(i * result.ncols) + result.ncols] = m.data[i];
+        };
+        return result;
+    }
+
+    // TODO: this could be ddone in placee, mey be more efficient?
     fn add(&self, m: &Matrix) -> Matrix {
         let mut result: Matrix = Matrix {
             nrows: self.nrows,
@@ -79,7 +98,7 @@ impl Matrix {
 }
 
 fn main() {
-    let features: Matrix = Matrix::random(10, 2, 10.0, 40.0);
+    let mut features: Matrix = Matrix::random(10, 2, 10.0, 40.0);
     let outputs: Matrix = Matrix::random(10, 1, 5.0, 6.0);
     let mut weights: Matrix = Matrix::random(2, 1, 0.1, 1.0);
     
@@ -147,6 +166,21 @@ mod tests {
             data: vec![6.0, 8.0, 10.0, 12.0],
         };
         assert_eq!(c.data, expected.data);
-
+        assert_eq!(c.ncols, expected.ncols);
+        assert_eq!(c.nrows, expected.nrows);
+    }
+    #[test]
+    fn insert_column_works() {
+        let a: Matrix = Matrix {
+            ncols: 2,
+            nrows: 2,
+            data: vec![1.0, 2., 3., 4.],
+        };
+        let expected: Matrix = Matrix {
+            ncols: 3,
+            nrows: 2,
+            data: vec![1., 2., 3., 4., 5., 6.],
+        };
+        expected.print_matrix();
     }
 }
