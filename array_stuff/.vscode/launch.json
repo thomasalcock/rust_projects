@@ -32,7 +32,7 @@
                     "--no-run",
                     "--bin=array_stuff",
                     "--package=array_stuff",
-                    "--no-capture"
+                    "--nocapture"
                 ],
                 "filter": {
                     "name": "array_stuff",
