@@ -1,4 +1,3 @@
-// TODO: test column insert function
 // TODO: add constant to feature matrix
 // TODO: finish estimation of weights
 // TODO: refactor and check which operations can be inplace
@@ -11,8 +10,15 @@ use matrix::Matrix;
 
 fn main() {
     let mut features: Matrix = Matrix::random(10, 2, 10.0, 40.0);
+    let constant: Matrix = Matrix{nrows: features.nrows, ncols: 1, data: vec![1.0; 10]};
+    constant.print_matrix();
+
+    features.append_column(&constant);
+
+    features.print_matrix();
+
     let outputs: Matrix = Matrix::random(10, 1, 5.0, 6.0);
-    let mut weights: Matrix = Matrix::random(2, 1, 0.1, 1.0);
+    let mut weights: Matrix = Matrix::random(features.ncols, 1, 0.1, 1.0);
 
     let alpha: f32 = 0.01;
     let n_epochs: usize = 5;

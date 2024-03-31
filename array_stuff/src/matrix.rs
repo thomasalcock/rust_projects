@@ -59,11 +59,12 @@ impl Matrix {
         return result;
     }
 
+    // TODO: this function doesn't correctly append "columns"
     pub fn append_column(&mut self, m: &Matrix) {
         if m.ncols != 1 {
             panic!("m must have exactly one column");
         }
-        let mut index: usize;     
+        let mut index: usize = 0;     
         for i in 0..m.nrows {
             index = (i * self.ncols) + self.ncols;
             if i > 0 {

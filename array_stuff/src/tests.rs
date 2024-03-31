@@ -65,6 +65,8 @@ fn append_inplace_column_works() {
     };
     let column: Matrix = Matrix{ncols: 1, nrows: 2, data: vec![5., 6.]};
     a.append_column(&column);
+    expected.print_matrix();
+    a.print_matrix();
     assert_eq!(a.data, expected.data);
     assert_eq!(a.nrows, expected.nrows);
     assert_eq!(a.ncols, expected.ncols);
@@ -79,25 +81,3 @@ fn append_inplace_column_works_2() {
     assert_eq!(a.nrows, 10);
     assert_eq!(a.ncols, 3);
 }
-
-
-// #[test]
-// fn append_inplace_column_works() {
-//     let mut a: Matrix = Matrix {
-//         ncols: 2,
-//         nrows: 2,
-//         data: vec![1.0, 2., 3., 4.],
-//     };
-//     let expected: Matrix = Matrix {
-//         ncols: 3,
-//         nrows: 2,
-//         data: vec![1., 2., 3., 4., 5., 6.],
-//     };
-//     let column: Matrix = Matrix{ncols: 1, nrows: 2, data: vec![5., 6.]};
-//     a.append_column(&column);
-//     a.print_matrix();
-//     assert_eq!(a.data, expected.data);
-//     assert_eq!(a.nrows, expected.nrows);
-//     assert_eq!(a.ncols, expected.ncols);
-
-// }
